@@ -1,38 +1,10 @@
 {
-    "titanic": {
-        "title": "Titanic",
-        "year": "1997",
-        "rating": "7.9",
-        "actors": "Leonardo DiCaprio, Kate Winslet, Billy Zane",
-        "poster": "https://m.media-amazon.com/images/M/MV5BMDdmZGU3NDQtY2E5My00ZTliLWIzOTUtMTY4ZGI1YjdiNjk3XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-    },
-    "2001: a space odyssey": {
-        "title": "2001: A Space Odyssey",
-        "year": "1968",
-        "rating": "8.3",
-        "actors": "Keir Dullea, Gary Lockwood, William Sylvester",
-        "poster": "https://m.media-amazon.com/images/M/MV5BMmNlYzRiNDctZWNhMi00MzI4LThkZTctMTUzMmZkMmFmNThmXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
-    },
-    "mcfarland, usa": {
-        "title": "McFarland, USA",
-        "year": "2015",
-        "rating": "7.4",
-        "actors": "Kevin Costner, Maria Bello, Ramiro Rodriguez",
-        "poster": "https://m.media-amazon.com/images/M/MV5BMjMwNjY2Mjk5OV5BMl5BanBnXkFtZTgwODM2NTA0MzE@._V1_SX300.jpg"
-    },
-    "mother": {
-        "title": "Mother",
-        "year": "2009",
-        "rating": "7.7",
-        "actors": "Kim Hye-ja, Won Bin, Jin Goo",
-        "poster": "https://m.media-amazon.com/images/M/MV5BMTQzMTg0NDA1M15BMl5BanBnXkFtZTgwODUzMTE0MjE@._V1_SX300.jpg"
-    },
-    "jack": {
-        "title": "Jack",
-        "year": "1996",
-        "rating": "5.8",
-        "actors": "Robin Williams, Diane Lane, Brian Kerwin",
-        "poster": "https://m.media-amazon.com/images/M/MV5BZDYyYzAyNjctODM1Mi00ZjE4LWFmNTItZjRmOWUxODA1ODY4XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg"
+    "best of best": {
+        "title": "Best of Best",
+        "year": "1994",
+        "rating": "6.0",
+        "actors": "Mark Ho-nam Cheng, Ivy Leung, James Wong",
+        "poster": "https://m.media-amazon.com/images/M/MV5BMmM0Njc0MDItMWJlMC00NDA1LWI2ZjUtY2Y5NzQ3OTBkNjI4XkEyXkFqcGc@._V1_SX300.jpg"
     },
     "24 hours": {
         "title": "24 Hours",

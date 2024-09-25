@@ -1,9 +1,13 @@
-import json
+import html
 
 class Movie_web_site_generator:
     def __init__(self, movies, output_file):
         self.movies = movies
         self.output_file = output_file
+
+    def escape_html(self, text):
+        """Escape HTML special characters to prevent injection issues."""
+        return html.escape(text)
 
     def generate_movie_html(self):
         """Generates HTML for a list of movies."""
@@ -11,12 +15,12 @@ class Movie_web_site_generator:
             return "<p>No movies available.</p>"
 
         movie_items = ""
-        for movie in self.movies.values():  # Iterate over movie values, not keys
-            title = movie.get('title', 'No title')
-            year = movie.get('year', 'Unknown')
-            rating = movie.get('rating', 'N/A')
-            actors = movie.get('actors', 'N/A')
-            poster = movie.get('poster', 'N/A')
+        for movie in self.movies.values():
+            title = self.escape_html(movie.get('title', 'No title'))
+            year = self.escape_html(movie.get('year', 'Unknown'))
+            rating = self.escape_html(movie.get('rating', 'N/A'))
+            actors = self.escape_html(movie.get('actors', 'N/A'))
+            poster = self.escape_html(movie.get('poster', 'N/A'))
 
             movie_items += f"""
             <li class="movie-item">
@@ -25,7 +29,8 @@ class Movie_web_site_generator:
                     <p class="movie-year"><strong>Year:</strong> {year}</p>
                     <p class="movie-rating"><strong>Rating:</strong> {rating}</p>
                     <p class="movie-actors"><strong>Actors:</strong> {actors}</p>
-                    <p class="movie-poster"><strong>Poster:</strong><br><img src="{poster}" alt="{title} poster" style="width:150px;height:auto;"/></p>
+                    <p class="movie-poster"><strong>Poster:</strong><br>
+                    <img src="{poster}" alt="{title} poster" class="poster-img"/></p>
                 </div>
             </li>
             """
@@ -57,5 +62,9 @@ class Movie_web_site_generator:
 
         html_content = html_template.replace("__REPLACE_MOVIE_INFO__", movie_html)
 
-        with open(self.output_file, "w", encoding="utf-8") as file:
-            file.write(html_content)
+        try:
+            with open(self.output_file, "w", encoding="utf-8") as file:
+                file.write(html_content)
+                print(f"Webpage generated and saved to {self.output_file}.")
+        except IOError as e:
+            print(f"Error writing to file {self.output_file}: {e}")
