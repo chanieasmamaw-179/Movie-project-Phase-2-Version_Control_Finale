@@ -18,10 +18,10 @@ class JSONStorage(StorageInterface):
                 return json.load(file)
         except json.JSONDecodeError as e:
             print(f"Error loading movies: {e}")
-            return {}  # Return an empty dictionary if there's a JSON decoding error
+            return {}
         except FileNotFoundError:
             print("Movies file not found. Returning an empty movie collection.")
-            return {}  # Return an empty dictionary if the file is not found
+            return {}
 
     def fetch_movie_info(self, movie_title: str) -> Optional[dict]:
         """Fetch movie information from an external API."""
@@ -90,4 +90,3 @@ class MovieStorage:
         self.json_storage.save_movies(movies)
         # Save movies to CSV
         self.csv_storage.save_movies(movies)
-

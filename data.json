@@ -1,16 +1,42 @@
 {
-    "best of best": {
-        "title": "Best of Best",
-        "year": "1994",
-        "rating": "6.0",
-        "actors": "Mark Ho-nam Cheng, Ivy Leung, James Wong",
-        "poster": "https://m.media-amazon.com/images/M/MV5BMmM0Njc0MDItMWJlMC00NDA1LWI2ZjUtY2Y5NzQ3OTBkNjI4XkEyXkFqcGc@._V1_SX300.jpg"
-    },
-    "24 hours": {
-        "title": "24 Hours",
-        "year": "1931",
-        "rating": "6.2",
-        "actors": "Clive Brook, Kay Francis, Miriam Hopkins",
-        "poster": "https://m.media-amazon.com/images/M/MV5BYzU0OWMzNTctMDU4Ni00MTU4LWE3ZmUtZTdmNjhiZDNiNjQ0XkEyXkFqcGdeQXVyMjUxODE0MDY@._V1_SX300.jpg"
+    "mother india": {
+        "Title": "Mother India",
+        "Year": "1957",
+        "Rated": "Not Rated",
+        "Released": "25 Oct 1957",
+        "Runtime": "172 min",
+        "Genre": "Action, Comedy, Drama",
+        "Director": "Mehboob Khan",
+        "Writer": "Wajahat Mirza, S. Ali Raza",
+        "Actors": "Nargis, Sunil Dutt, Rajendra Kumar Tuli",
+        "Plot": "In this melodrama, a poverty-stricken woman raises her sons through many trials and tribulations. But no matter the struggles, she always sticks to her own moral code.",
+        "Language": "Hindi",
+        "Country": "India",
+        "Awards": "Nominated for 1 Oscar. 8 wins & 2 nominations total",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BMDNmZmI5MTYtOTYzMi00OGU0LTgwYTctNGI3YThmYTNhZWM1XkEyXkFqcGdeQXVyMzg1ODEwNQ@@._V1_SX300.jpg",
+        "Ratings": [
+            {
+                "Source": "Internet Movie Database",
+                "Value": "7.8/10"
+            },
+            {
+                "Source": "Rotten Tomatoes",
+                "Value": "86%"
+            },
+            {
+                "Source": "Metacritic",
+                "Value": "53/100"
+            }
+        ],
+        "Metascore": "53",
+        "imdbRating": "7.8",
+        "imdbVotes": "9,918",
+        "imdbID": "tt0050188",
+        "Type": "movie",
+        "DVD": "N/A",
+        "BoxOffice": "N/A",
+        "Production": "N/A",
+        "Website": "N/A",
+        "Response": "True"
     }
 }

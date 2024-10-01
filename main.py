@@ -18,12 +18,11 @@ def load_data(file_path):
 def main():
     """Main function to handle command-line interactions for the movie collection."""
 
-    # Set storage type to 'json' as default
-    storage_type = 'json'
-    storage = MovieStorage()  # JSONStorage and CSVStorage no longer need to be passed here
+    # Initialize storage with an API key
+    api_key = "afc2e88a"  # Make sure to replace with a valid API key
+    storage = MovieStorage(api_key)  # Pass the API key to MovieStorage
 
     # Load movies initially
-    movies = storage.get_movies()  # Load existing movies from storage
     movie_collection = MovieCollection(storage)
 
     while True:
@@ -46,32 +45,31 @@ def main():
                 print("Exiting the program. Bye!")
                 break
             elif choice == "1":
-                movie_collection.list_movies()
+                print(movie_collection.list_movies())
             elif choice == "2":
                 title = input("Enter movie title: ").strip()
-                movie_collection.add_movie(title)
+                print(movie_collection.add_movie(title))
             elif choice == "3":
                 title = input("Enter the title of the movie to delete: ").strip()
-                movie_collection.delete_movie(title)
+                print(movie_collection.delete_movie(title))
             elif choice == "4":
                 title = input("Enter the title of the movie to update: ").strip()
-                movie_collection.update_movie(title)
+                print(movie_collection.update_movie(title))
             elif choice == "5":
-                movie_collection.show_stats()
+                print(movie_collection.show_stats())
             elif choice == "6":
-                movie_collection.show_random_movie()
+                print(movie_collection.show_random_movie())
             elif choice == "7":
                 title = input("Enter the title of the movie to search for: ").strip()
-                movie_collection.search_movie(title)
+                print(movie_collection.search_movie(title))
             elif choice == "8":
-                movie_collection.sort_movies_by_rating()
+                print(movie_collection.sort_movies_by_rating())
             elif choice == "9":
                 # Ensure we have movies loaded in the MovieCollection
-                movies = movie_collection.movies  # Use movies already loaded in the collection
-                if not movies:
+                if not movie_collection.movies:
                     print("No movies available to generate a webpage.")
                 else:
-                    generator = Movie_web_site_generator(movies, 'movie_web.html')
+                    generator = Movie_web_site_generator(movie_collection.movies, 'movie_web.html')
                     generator.generate_html()
                     print("Webpage 'movie_web.html' has been generated and saved.")
             else:

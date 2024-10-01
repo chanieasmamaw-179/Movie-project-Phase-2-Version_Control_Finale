@@ -5,15 +5,15 @@ body {
 }
 
 .movie-rating {
-   color: #3e1010;
-  justify-self: left;
-  text-align: left;
+  color: #3e1010;
+  text-align: center; /* Center text alignment */
 }
+
 .list-movies-title {
   padding: 10px 0;
   background: #009B50;
   color: white;
-  text-align: center;
+  text-align: center; /* Center the title */
   font-size: 16pt;
 }
 
@@ -23,38 +23,39 @@ body {
   margin: 0;
   margin-top: 20px;
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap; /* Allow items to wrap onto multiple lines */
+  justify-content: center; /* Center the grid */
 }
 
 .movie-grid li {
-  padding: 10px 15px;
-  text-align: left;
-}
-
-.movie {
-  width: 140px;
+  padding: 15px; /* Space around each movie item */
+  text-align: center; /* Center text alignment for each movie item */
+  flex: 0 0 150px; /* Set a base width for each movie item */
 }
 
 .movie-title,
 .movie-year {
   font-size: 0.8em;
-  text-align: center;
-}
-
-.movie-title {
-  text-align: left;
-  margin-top: 10px;
 }
 
 .movie-year {
   color: #3e1010;
-  justify-self: left;
-  text-align: left;
 }
 
-
+/* Updated styles for the movie poster */
 .movie-poster {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    width: 128px;
-    height: 193px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  width: 128px; /* Fixed width for posters */
+  height: 193px; /* Fixed height for posters */
+  display: block; /* Ensures the poster behaves like a block element */
+  margin: 0 auto; /* Centers the poster */
+}
+
+/* New line between poster and text elements */
+.movie-info {
+  margin-top: 10px; /* Space between poster and title/year */
+}
+
+.movie-info p {
+  margin: 5px 0; /* Add margin to paragraph elements for space */
 }

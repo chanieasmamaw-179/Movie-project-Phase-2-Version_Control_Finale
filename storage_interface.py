@@ -2,6 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Dict
 
 class StorageInterface(ABC):
+    """Abstract base class for movie storage interfaces."""
 
     @abstractmethod
     def get_movies(self) -> Dict[str, dict]:
