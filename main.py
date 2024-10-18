@@ -2,6 +2,18 @@ import json
 from Movie_web_site_generator import Movie_web_site_generator
 from movie import MovieCollection
 from movie_storage import MovieStorage
+from dotenv import load_dotenv
+import os
+
+
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Access the API key
+api_key = os.getenv('API_KEY')
+
+# Now you can use the api_key in your application
 
 def load_data(file_path):
     """Loads a JSON file."""
