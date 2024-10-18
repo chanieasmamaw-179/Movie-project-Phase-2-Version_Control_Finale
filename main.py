@@ -31,7 +31,7 @@ def main():
     """Main function to handle command-line interactions for the movie collection."""
 
     # Initialize storage with an API key
-    api_key = "afc2e88a"  # Make sure to replace with a valid API key
+  #  api_key = "afc2e88a"  # Make sure to replace with a valid API key
     storage = MovieStorage(api_key)  # Pass the API key to MovieStorage
 
     # Load movies initially
