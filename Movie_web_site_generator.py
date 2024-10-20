@@ -8,6 +8,7 @@ class Movie_web_site_generator:
                            will be saved.
 
     Methods:
+        format_rating(rating): Formats the rating to ensure it is a string with at most one decimal place.
         generate_html(): Generates HTML content for the movie collection and writes it
                          to the specified output file.
     """
@@ -23,6 +24,33 @@ class Movie_web_site_generator:
         self.movies = movies
         self.output_file = output_file
 
+    def format_rating(self, rating):
+        """
+        Formats the rating to ensure it is a string with at most one decimal place.
+
+        Args:
+            rating (float or str): The rating to format.
+
+        Returns:
+            str: Formatted rating string or "Not Available" if input is invalid.
+        """
+        print(f"Received rating: {rating} (type: {type(rating)})")  # Debugging line
+        if rating is None:  # Explicitly check for None
+            return "Not Available"
+
+        if isinstance(rating, (float, int)):
+            return f"{rating:.1f}"  # Directly format if it's a number
+        elif isinstance(rating, str) and rating.strip():  # Check if it's a non-empty string
+            try:
+                # Print the string before conversion for debugging
+                print(f"Trying to convert rating string: '{rating}'")
+                return f"{float(rating):.1f}"  # Attempt to convert and format
+            except ValueError:
+                print(f"ValueError: Could not convert '{rating}' to float.")  # Debugging line
+                return "Not Available"  # Handle invalid conversion
+
+        return "Not Available"  # Handle empty, None, or invalid cases
+
     def generate_html(self):
         """
         Generates HTML content for the movie collection and writes it to the output file.
@@ -33,6 +61,7 @@ class Movie_web_site_generator:
         html_content = """<!DOCTYPE html>
         <html>
         <head>
+            <meta charset="UTF-8">
             <title>My Movie App</title>
             <link rel="stylesheet" href="style.css"/>
         </head>
@@ -42,18 +71,35 @@ class Movie_web_site_generator:
         </div>
         <div>
             <ul class="movie-grid">
-        """  # Changed from "movie-list" to "movie-grid" to match CSS
+        """
 
         # Generate movie list items
         for movie in self.movies.values():
+            title = movie.get('Title', 'No title')
+            year = movie.get('Year', 'Unknown')
+            rating = movie.get('Rating')
+
+            # Use format_rating to get the formatted rating
+            formatted_rating = self.format_rating(rating)
+
+            actors = movie.get('Actors', 'N/A')
+            poster = movie.get('Poster')
+
+            # Validate poster URL
+            poster_html = (
+                f'<img src="{poster}" alt="{title} poster" class="movie-poster"/>'
+                if poster else
+                '<div class="no-poster">No Image Available</div>'
+            )
+
             html_content += f"""
             <li class="movie-item">
                 <div class="movie-info">
-                    <img src="{movie.get('Poster', 'N/A')}" alt="{movie.get('Title', 'No title')} poster" class="movie-poster"/>
-                    <h2 class="movie-title">{movie.get('Title', 'No title')}</h2>
-                    <p class="movie-year"><strong>Year:</strong> {movie.get('Year', 'Unknown')}</p>
-                    <p class="movie-rating"><strong>Rating:</strong> {movie.get('Rating', 'N/A')}</p>
-                    <p class="movie-actors"><strong>Actors:</strong> {movie.get('Actors', 'N/A')}</p>
+                    {poster_html}
+                    <h2 class="movie-title">{title}</h2>
+                    <p class="movie-year"><strong>Year:</strong> {year}</p>
+                    <p class="movie-rating"><strong>Rating:</strong> {formatted_rating}</p>
+                    <p class="movie-actors"><strong>Actors:</strong> {actors}</p>
                 </div>
             </li>
             """
@@ -67,6 +113,17 @@ class Movie_web_site_generator:
         """
 
         # Write the HTML content to the output file
-        with open(self.output_file, 'w', encoding='utf-8') as file:
-            file.write(html_content)
-            print(f"Webpage '{self.output_file}' has been generated and saved.")
+        try:
+            with open(self.output_file, 'w', encoding='utf-8') as file:
+                file.write(html_content)
+                print(f"Webpage '{self.output_file}' has been generated and saved.")
+        except IOError as e:
+            print(f"An error occurred while writing to the file: {e}")
+
+# Example usage:
+# movies_data = {
+#     'Inception': {'Title': 'Inception', 'Year': 2010, 'Rating': 8.8, 'Actors': 'Leonardo DiCaprio', 'Poster': 'inception.jpg'},
+#     'Interstellar': {'Title': 'Interstellar', 'Year': 2014, 'Rating': '8.6', 'Actors': 'Matthew McConaughey', 'Poster': 'interstellar.jpg'},
+# }
+# generator = Movie_web_site_generator(movies_data, 'movies.html')
+# generator.generate_html()

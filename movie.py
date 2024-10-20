@@ -94,16 +94,17 @@ class MovieCollection:
             message = "No movies available."
             logging.info(message)
             return message
-        else:
-            movie_list = []
-            for title, data in self.movies.items():
-                rating = data.get('rating') or data.get('imdbRating') or data.get('score') or 'N/A'
-                movie_title = title.title() if title else 'Unknown Title'
-                movie_list.append(f"{movie_title} - Rating: {rating}")
 
-            movie_list_str = "\n".join(movie_list)
-            logging.info(movie_list_str)
-            return movie_list_str
+        movie_list = []
+        for title, data in self.movies.items():
+            logging.info(f"Checking movie data for title '{title}': {data}")  # Log movie data for debugging
+            rating = data.get('rating') or data.get('imdbRating') or data.get('score') or 'N/A'
+            movie_title = title.title() if title else 'Unknown Title'
+            movie_list.append(f"{movie_title} - Rating: {rating}")
+
+        movie_list_str = "\n".join(movie_list)
+        logging.info(movie_list_str)
+        return movie_list_str
 
     def show_stats(self) -> str:
         """Show movie statistics such as average, highest, and lowest rating."""
@@ -117,9 +118,10 @@ class MovieCollection:
             rating = movie.get('rating') or movie.get('imdbRating') or movie.get('score')
             if rating:
                 try:
-                    ratings.append(float(rating))
+                    ratings.append(float(rating))  # Attempt to convert the rating
                 except ValueError:
-                    logging.warning(f"Invalid rating found for movie: {movie.get('title', 'Unknown')}")
+                    logging.warning(
+                        f"Invalid rating found for movie: {movie.get('title', 'Unknown')} with rating: {rating}")
 
         if ratings:
             avg_rating = stat.mean(ratings)
@@ -140,12 +142,10 @@ class MovieCollection:
     def show_random_movie(self) -> str:
         """Show a random movie from the collection."""
         if self.movies:
-            # Create a list of movies that have valid titles and ratings
             valid_movies = [movie for movie in self.movies.values() if 'Title' in movie and 'imdbRating' in movie]
 
             if valid_movies:
                 random_movie = random.choice(valid_movies)
-                # Safely get the title and rating
                 movie_title = random_movie.get('Title', 'Unknown Title')
                 movie_rating = random_movie.get('imdbRating', 'N/A')
                 message = f"Random Movie: {movie_title} (Rating: {movie_rating})"
@@ -159,22 +159,3 @@ class MovieCollection:
         """Search for a movie by title using fuzzy matching."""
         titles = list(self.movies.keys())
         match, score = process.extractOne(title.lower(), titles)
-        if score >= 80:  # Adjust the threshold if needed
-            movie = self.movies[match]
-            movie_title = movie.get('Title', 'Unknown Title')
-            movie_rating = movie.get('imdbRating', 'N/A')
-            message = f"Movie Found: {movie_title} (Rating: {movie_rating})"
-            logging.info(message)
-            return message
-        else:
-            message = f"No match found for '{title}'."
-            logging.warning(message)
-            return message
-
-    def sort_movies_by_rating(self) -> str:
-        """Sort movies by their rating and display them."""
-        sorted_movies = sorted(self.movies.items(), key=lambda x: float(x[1].get('imdbRating', 0)), reverse=True)
-        sorted_list = [f"{movie['Title']} - Rating: {movie.get('imdbRating', 'N/A')}" for title, movie in sorted_movies]
-        sorted_list_str = "\n".join(sorted_list)
-        logging.info(sorted_list_str)
-        return sorted_list_str

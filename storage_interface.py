@@ -2,24 +2,19 @@ from abc import ABC, abstractmethod
 from typing import Dict
 
 class StorageInterface(ABC):
-    """Abstract base class for movie storage interfaces."""
+    """Abstract base class for storage interface."""
 
     @abstractmethod
-    def get_movies(self) -> Dict[str, dict]:
-        """Load movies from storage.
-
-        Returns:
-            A dictionary where keys are movie titles (as strings) and values are
-            dictionaries containing movie details (e.g., rating, year, etc.).
-        """
+    def get_movies(self) -> Dict:
+        """Retrieve movies from storage."""
         pass
 
     @abstractmethod
-    def save_movies(self, movies: Dict[str, dict]):
-        """Save movies to storage.
+    def save_movies(self, movies: Dict) -> None:
+        """Save movies to storage."""
+        pass
 
-        Args:
-            movies: A dictionary where keys are movie titles and values are
-            dictionaries containing movie details.
-        """
+    @abstractmethod
+    def fetch_movie_info(self, title: str) -> Dict:
+        """Fetch movie information from an external source."""
         pass

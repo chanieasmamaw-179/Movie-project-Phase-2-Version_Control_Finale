@@ -1,19 +1,15 @@
 import json
-from Movie_web_site_generator import Movie_web_site_generator
+from Movie_web_site_generator import *
 from movie import MovieCollection
 from movie_storage import MovieStorage
 from dotenv import load_dotenv
 import os
-
-
 
 # Load environment variables from .env file
 load_dotenv()
 
 # Access the API key
 api_key = os.getenv('API_KEY')
-
-# Now you can use the api_key in your application
 
 def load_data(file_path):
     """Loads a JSON file."""
@@ -29,13 +25,8 @@ def load_data(file_path):
 
 def main():
     """Main function to handle command-line interactions for the movie collection."""
-
-    # Initialize storage with an API key
-  #  api_key = "afc2e88a"  # Make sure to replace with a valid API key
-    storage = MovieStorage(api_key)  # Pass the API key to MovieStorage
-
-    # Load movies initially
-    movie_collection = MovieCollection(storage)
+    storage = MovieStorage(api_key)  # Initialize storage with the API key
+    movie_collection = MovieCollection(storage)  # Load movies initially
 
     while True:
         print("\nMenu")
@@ -77,7 +68,6 @@ def main():
             elif choice == "8":
                 print(movie_collection.sort_movies_by_rating())
             elif choice == "9":
-                # Ensure we have movies loaded in the MovieCollection
                 if not movie_collection.movies:
                     print("No movies available to generate a webpage.")
                 else:
@@ -93,5 +83,7 @@ def main():
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
 
+
+# Example usage:
 if __name__ == "__main__":
     main()
